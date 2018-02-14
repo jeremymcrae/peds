@@ -13,4 +13,6 @@ setup (name="peds",
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Topic :: Scientific/Engineering :: Bio-Informatics",
-    ])
+    ],
+    test_suite="tests"
+    )
