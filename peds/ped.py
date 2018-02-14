@@ -12,14 +12,14 @@ def open_ped(path):
         sep = get_separator(handle)
         for line in handle:
             # ignore header and comment lines
-            if line.startswith('family_id\t') or line.startswith('#'):
+            if line.startswith('family_id{}'.format(sep)) or line.startswith('#'):
                 continue
             
-            fam_id = line.split('\t', 1)[0]
+            fam_id = line.split(sep, 1)[0]
             if fam_id not in fams:
                 fams[fam_id] = Family(fam_id)
             
-            person = Person(*line.strip().split('\t'))
+            person = Person(*line.strip().split(sep))
             if person in fams[fam_id]:
                 raise ValueError('already family: {}'.format(person))
             
