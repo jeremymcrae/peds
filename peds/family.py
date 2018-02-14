@@ -18,6 +18,9 @@ class Family(nx.DiGraph):
     def __repr__(self):
         return 'Family({})'.format(self.id)
     
+    def __gt__(self, other):
+        return self.id > other.id
+    
     def get_parents(self, person):
         return self.predecessors(person)
     
