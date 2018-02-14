@@ -33,7 +33,7 @@ class Family(nx.DiGraph):
     def get_mother(self, person):
         # return the female parent, or None if mother not present
         for x in self.get_parents(person):
-            if x.is_female():
+            if not x.is_male() and not x.unknown_sex():
                 return x
     
     def get_children(self, person):
