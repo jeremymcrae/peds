@@ -5,6 +5,7 @@ python:
   - 3.6
 before_install:
   - pip install --upgrade pip setuptools wheel
+  - pip install --only-binary=all coveralls
 script:
   - python setup.py test
   - python -m coverage run --source=./peds setup.py test
