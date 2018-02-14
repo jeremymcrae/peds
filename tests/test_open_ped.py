@@ -169,7 +169,7 @@ class TestOpenPed(unittest.TestCase):
         
         fam1 = Family('A')
         fam1.add_person(Person('A', 'B', '0', '0', '1', '1'))
-        fam2 = Family('A')
+        fam2 = Family('C')
         fam2.add_person(Person('C', 'D', '0', '0', '1', '1'))
         
         expected = [fam1, fam2]

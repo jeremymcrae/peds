@@ -40,6 +40,10 @@ class Family(nx.DiGraph):
         return self.successors(person)
     
     def add_person(self, person):
+        if person.family != self.id:
+            raise ValueError("{} didn't match family ID: {}".format(person.id,
+                self.id))
+        
         self.add_node(person)
     
     def set_mom(self, mom, child):
