@@ -12,9 +12,6 @@ class TestOpenPed(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.tempdir = tempfile.mkdtemp()
-        print('\n\n')
-        print(cls.tempdir)
-        print('\n\n')
     
     @classmethod
     def tearDownClass(cls):
