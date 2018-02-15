@@ -22,16 +22,24 @@ class Person(object):
             raise ValueError('unknown phenotype: {}'.format(self.phenotype))
     
     def __repr__(self):
-        args = ''
+        data = ''
         if len(self.data) > 0:
             temp = [ '"{}"'.format(x) for x in self.data ]
-            args = ', {}'.format(", ".join(temp))
+            data = ', {}'.format(", ".join(temp))
         
         return 'Person("{}", "{}", "{}", "{}", "{}", "{}"{})'.format(self.family,
-            self.id, self.mom, self.dad, self.sex, self.phenotype, args)
+            self.id, self.mom, self.dad, self.sex, self.phenotype, data)
     
     def __str__(self):
-        return self.id
+        """ convert the object back to a ped file line
+        """
+        
+        data = ''
+        if len(self.data) > 0:
+            data = '\t' + '\t'.join(self.data)
+        
+        return '{}\t{}\t{}\t{}\t{}\t{}{}\n'.format(self.family, self.id,
+            self.dad, self.mom, self.sex, self.phenotype, data)
     
     def __hash__(self):
         return hash((self.family, self.id))
