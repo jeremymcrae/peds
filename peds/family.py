@@ -47,19 +47,47 @@ class Family(nx.DiGraph):
         self.add_node(person)
     
     def set_mom(self, mom, child):
-        self.add_edge(mom, child)
+        if mom not in self:
+            raise ValueError("Can't set mother, not in family: {}".format(mom.id))
+        
+        if child not in self:
+            raise ValueError("Can't set father, child not in family: {}".format(child.id))
+        
+        if self.get_mother(child) is not None and \
+                self.get_mother(child) != mom:
+            raise ValueError('adding a second mother to: {}'.format(child.id))
+        
+        if mom.id != child.mom:
+            raise ValueError("mom ID not in child: {}".format(child.mom))
+        
         # get the actual node for the mom, which contains the sex
         nodes = list(self.nodes)
         if nodes[nodes.index(mom)].is_male():
             raise ValueError("mom is not female: {}".format(mom.id))
+        
+        self.add_edge(mom, child)
     
     def set_dad(self, dad, child):
-        self.add_edge(dad, child)
+        if dad not in self:
+            raise ValueError("Can't set father, not in family: {}".format(dad.id))
+            
+        if child not in self:
+            raise ValueError("Can't set father, child not in family: {}".format(child.id))
+        
+        if self.get_father(child) is not None and \
+                self.get_father(child) != dad:
+            raise ValueError('adding a second father to: {}'.format(child.id))
+        
+        if dad.id != child.dad:
+            raise ValueError("dad ID not in child: {}".format(child.dad))
+        
         # get the actual node for the dad, which contains the sex
         nodes = list(self.nodes)
         dad = nodes[nodes.index(dad)]
         if not (dad.is_male() or dad.unknown_sex()):
             raise ValueError("dad is not male: {}".format(dad.id))
+        
+        self.add_edge(dad, child)
     
     def get_proband(self):
         for x in self.nodes():
