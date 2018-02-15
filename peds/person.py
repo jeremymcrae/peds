@@ -5,7 +5,7 @@ class Person(object):
     female_codes = set(['2', 'f', 'F', 'female'])
     unknown_codes = set(['0', 'NA', 'unknown', '.', '-9'])
     
-    def __init__(self, family, id, dad, mom, sex, phenotype):
+    def __init__(self, family, id, dad, mom, sex, phenotype, *args):
         
         self.family = family
         self.id = id
@@ -13,6 +13,7 @@ class Person(object):
         self.dad = dad
         self.sex = sex
         self.phenotype = phenotype
+        self.data = args
         
         if self.sex not in self.male_codes | self.female_codes | self.unknown_codes:
             raise ValueError('unknown sex code: {}'.format(self.sex))
@@ -21,9 +22,13 @@ class Person(object):
             raise ValueError('unknown phenotype: {}'.format(self.phenotype))
     
     def __repr__(self):
-        return 'Person(family="{}", person="{}", mom="{}", dad="{}", sex="{}", ' \
-            'phenotype="{}")'.format(self.family, self.id, self.mom,
-            self.dad, self.sex, self.phenotype)
+        args = ''
+        if len(self.data) > 0:
+            temp = [ '"{}"'.format(x) for x in self.data ]
+            args = ', {}'.format(", ".join(temp))
+        
+        return 'Person("{}", "{}", "{}", "{}", "{}", "{}"{})'.format(self.family,
+            self.id, self.mom, self.dad, self.sex, self.phenotype, args)
     
     def __str__(self):
         return self.id
