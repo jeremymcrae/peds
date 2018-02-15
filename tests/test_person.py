@@ -20,7 +20,7 @@ class TestPerson(unittest.TestCase):
         self.assertEqual(i.dad, '0')
     
     def test_initialize_person_data(self):
-        """
+        """ check that Person() initializes correctly with additional columns
         """
         
         i = Person('A', 'B', '0', '0', '1', '0')
@@ -31,6 +31,16 @@ class TestPerson(unittest.TestCase):
         
         i = Person('A', 'B', '0', '0', '1', '0', 'PATH_TO_VCF', 'SOMETHING_ELSE')
         self.assertEqual(i.data, ('PATH_TO_VCF', 'SOMETHING_ELSE'))
+    
+    def test___str__(self):
+        """ check that we can convert a Person back to ped line
+        """
+        
+        i = Person('A', 'B', '0', '0', '1', '0')
+        self.assertEqual(str(i), 'A\tB\t0\t0\t1\t0\n')
+        
+        i = Person('A', 'B', '0', '0', '1', '0', 'EXTRA', 'EXTRA2')
+        self.assertEqual(str(i), 'A\tB\t0\t0\t1\t0\tEXTRA\tEXTRA2\n')
     
     def test_person_odd_sex(self):
         """ check that we can handle different sex codes
