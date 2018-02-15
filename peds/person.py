@@ -1,6 +1,8 @@
 
 class Person(object):
     
+    __slots__ = ('family', 'id', 'mom', 'dad', 'sex', 'phenotype', 'data')
+    
     male_codes = set(['1', 'm', 'M', 'male'])
     female_codes = set(['2', 'f', 'F', 'female'])
     unknown_codes = set(['0', 'NA', 'unknown', '.', '-9'])
