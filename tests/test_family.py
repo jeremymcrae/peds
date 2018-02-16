@@ -57,6 +57,22 @@ class TestFamily(unittest.TestCase):
         # despite a mother being present, there is still not father
         self.assertIsNone(fam.get_father(child))
     
+    def test_set_mother_placeholder(self):
+        """ check the mother when set with a placeholder mother
+        """
+        
+        fam = Family('A')
+        child = Person('A', 'B', '0', 'C', '1', '1')
+        mother = Person('A', 'C', '0', '0', '2', '1')
+        placeholder = Person('A', 'C', 'NA', 'NA', 'NA', 'NA')
+        fam.add_person(child)
+        fam.add_person(mother)
+        
+        fam.set_mom(placeholder, child)
+        
+        # and check we can still pick up the parent.
+        self.assertIsNotNone(fam.get_mother(child))
+    
     def test_get_father(self):
         """ test getting a father
         """
@@ -75,6 +91,22 @@ class TestFamily(unittest.TestCase):
         
         # despite a father being present, there is still not mother
         self.assertIsNone(fam.get_mother(child))
+    
+    def test_set_mother_placeholder(self):
+        """ check the father when set with a placeholder father
+        """
+        
+        fam = Family('A')
+        child = Person('A', 'B', 'C', '0', '1', '1')
+        father = Person('A', 'C', '0', '0', '1', '1')
+        placeholder = Person('A', 'C', 'NA', 'NA', 'NA', 'NA')
+        fam.add_person(child)
+        fam.add_person(father)
+        
+        fam.set_dad(placeholder, child)
+        
+        # and check we can still pick up the parent.
+        self.assertIsNotNone(fam.get_father(child))
     
     def test_get_children(self):
         """ test getting children

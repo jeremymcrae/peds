@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup (name="peds",
     description='Package for parsing pedigree files',
-    version="1.1.0",
+    version="1.2.0",
     author="Jeremy McRae",
     author_email="jmcrae@illumina.com",
     url='https://github.com/jeremymcrae/peds',
