@@ -62,7 +62,8 @@ class Family(nx.DiGraph):
         
         # get the actual node for the mom, which contains the sex
         nodes = list(self.nodes)
-        if nodes[nodes.index(mom)].is_male():
+        mom = nodes[nodes.index(mom)]
+        if mom.is_male():
             raise ValueError("mom is not female: {}".format(mom.id))
         
         self.add_edge(mom, child)
