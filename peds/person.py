@@ -30,7 +30,7 @@ class Person(object):
             data = ', {}'.format(", ".join(temp))
         
         return 'Person("{}", "{}", "{}", "{}", "{}", "{}"{})'.format(self.family,
-            self.id, self.mom, self.dad, self.sex, self.phenotype, data)
+            self.id, self.dad, self.mom, self.sex, self.phenotype, data)
     
     def __str__(self):
         """ convert the object back to a ped file line
