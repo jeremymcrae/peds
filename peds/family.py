@@ -16,7 +16,10 @@ class Family(nx.DiGraph):
         super(Family, self).__init__()
     
     def __repr__(self):
-        return 'Family({})'.format(self.id)
+        return 'Family("{}")'.format(self.id)
+    
+    def __str__(self):
+        return repr(self)
     
     def __gt__(self, other):
         return self.id > other.id
