@@ -92,7 +92,7 @@ class TestFamily(unittest.TestCase):
         # despite a father being present, there is still not mother
         self.assertIsNone(fam.get_mother(child))
     
-    def test_set_mother_placeholder(self):
+    def test_set_father_placeholder(self):
         """ check the father when set with a placeholder father
         """
         
