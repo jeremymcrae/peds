@@ -43,3 +43,5 @@ def get_probands(family):
         # to cope with multigenerational familes, but will do for now.
         if x.is_affected() and len(list(family.get_children(x))) == 0:
             probands.append(x)
+    
+    return probands
