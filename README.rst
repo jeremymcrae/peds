@@ -9,14 +9,15 @@ and group individuals within families. Only performs minimal validation.
 
 Install
 -------
-.. code::bash
+
+.. code:: bash
 
     pip install peds
 
 Usage
 -----
 
-.. code::python
+.. code:: python
     from peds import open_ped
 
     families = open_ped(PATH)
