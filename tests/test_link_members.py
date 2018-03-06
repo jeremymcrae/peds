@@ -5,7 +5,7 @@ from peds import Family, Person
 from peds.ped import link_members
 
 class TestLinkMembers(unittest.TestCase):
-    """ test loading a pedigree file
+    """ test linking family members
     """
     
     def test_link_members(self):
@@ -20,8 +20,6 @@ class TestLinkMembers(unittest.TestCase):
         
         fam = link_members(fam)
         
-        child1 = Person('A', 'B', 'C', 'D', '1', '1')
-        child2 = Person('A', 'E', 'C', 'D', '1', '1')
         dad = Person('A', 'C', 'NA', 'NA', 'NA', 'NA')
         mom = Person('A', 'D', 'NA', 'NA', 'NA', 'NA')
         expected = Family('A')
