@@ -50,7 +50,7 @@ class TestLinkMembers(unittest.TestCase):
         
         # getting a list or iterator of family members doesn't include parents
         # only described in child lines
-        self.assertEqual(list(fam), [child1, child2])
+        self.assertEqual(set(fam), set([child1, child2]))
         
         # still identify parents, even though we don't iterate through them
         self.assertEqual(fam.get_mother(child1), Person('A', 'D', 'NA', 'NA', 'female', 'NA'))
