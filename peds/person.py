@@ -7,7 +7,7 @@ class Person(object):
     female_codes = set(['2', 'f', 'F', 'female'])
     unknown_codes = set(['0', 'NA', 'unknown', '.', '-9'])
     
-    def __init__(self, family, id, dad, mom, sex, phenotype, *args, inferred=False):
+    def __init__(self, family, id, dad, mom, sex, phenotype, *args, **kwargs):
         
         self.family = family
         self.id = id
@@ -16,7 +16,7 @@ class Person(object):
         self.sex = sex
         self.phenotype = phenotype
         self.data = args
-        self.inferred = inferred
+        self.inferred = kwargs.get('inferred', False)
         
         if self.sex not in self.male_codes | self.female_codes | self.unknown_codes:
             raise ValueError('unknown sex code: {}'.format(self.sex))
