@@ -47,8 +47,8 @@ def link_members(family):
     members = list(family)
     for person in members:
         # make placeholder parents, to match on family and individual IDs
-        mom = Person(family.id, person.mom, 'NA', 'NA', 'NA', 'NA')
-        dad = Person(family.id, person.dad, 'NA', 'NA', 'NA', 'NA')
+        mom = Person(family.id, person.mom, 'NA', 'NA', 'female', 'NA', inferred=True)
+        dad = Person(family.id, person.dad, 'NA', 'NA', 'male', 'NA', inferred=True)
         
         if mom.id != '0':
             if mom not in family:

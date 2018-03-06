@@ -24,6 +24,13 @@ class Family(nx.DiGraph):
     def __gt__(self, other):
         return self.id > other.id
     
+    def __iter__(self):
+        # when we run though family members, only use members fully described
+        # in the ped file (or inserted ourselves), otherwise we might get
+        # individuals described only in child lines. This way, won't write ped
+        # files with lines not present in the initial ped.
+        return (x for x in iter(self._node) if not x._is_inferred() )
+    
     def get_parents(self, person):
         return self.predecessors(person)
     

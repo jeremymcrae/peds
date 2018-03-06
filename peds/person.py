@@ -1,13 +1,13 @@
 
 class Person(object):
     
-    __slots__ = ('family', 'id', 'mom', 'dad', 'sex', 'phenotype', 'data')
+    __slots__ = ('family', 'id', 'mom', 'dad', 'sex', 'phenotype', 'data', 'inferred')
     
     male_codes = set(['1', 'm', 'M', 'male'])
     female_codes = set(['2', 'f', 'F', 'female'])
     unknown_codes = set(['0', 'NA', 'unknown', '.', '-9'])
     
-    def __init__(self, family, id, dad, mom, sex, phenotype, *args):
+    def __init__(self, family, id, dad, mom, sex, phenotype, *args, inferred=False):
         
         self.family = family
         self.id = id
@@ -16,6 +16,7 @@ class Person(object):
         self.sex = sex
         self.phenotype = phenotype
         self.data = args
+        self.inferred = inferred
         
         if self.sex not in self.male_codes | self.female_codes | self.unknown_codes:
             raise ValueError('unknown sex code: {}'.format(self.sex))
@@ -57,3 +58,6 @@ class Person(object):
     
     def unknown_sex(self):
         return self.sex in self.unknown_codes
+    
+    def _is_inferred(self):
+        return self.inferred
