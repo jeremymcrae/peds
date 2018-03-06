@@ -1,4 +1,5 @@
 
+import io
 from setuptools import setup
 
 setup (name="peds",
