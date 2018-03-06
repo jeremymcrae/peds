@@ -49,10 +49,14 @@ def link_members(family):
         mom = Person(family.id, person.mom, 'NA', 'NA', 'NA', 'NA')
         dad = Person(family.id, person.dad, 'NA', 'NA', 'NA', 'NA')
         
-        if mom.id != '0' and mom in family:
+        if mom.id != '0':
+            if mom not in family:
+                family.add_person(mom)
             family.set_mom(mom, person)
         
-        if dad.id != '0' and dad in family:
+        if dad.id != '0':
+            if dad not in family:
+                family.add_person(dad)
             family.set_dad(dad, person)
     
     return family
