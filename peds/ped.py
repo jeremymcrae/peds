@@ -44,7 +44,8 @@ def link_members(family):
     """
     
     # link parents to their children
-    for person in family:
+    members = list(family)
+    for person in members:
         # make placeholder parents, to match on family and individual IDs
         mom = Person(family.id, person.mom, 'NA', 'NA', 'NA', 'NA')
         dad = Person(family.id, person.dad, 'NA', 'NA', 'NA', 'NA')
