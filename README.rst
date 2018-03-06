@@ -18,6 +18,7 @@ Usage
 -----
 
 .. code:: python
+
     from peds import open_ped
 
     families = open_ped(PATH)
