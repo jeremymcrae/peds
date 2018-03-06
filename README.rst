@@ -4,8 +4,8 @@
 peds: basic pedigree parsing
 ----------------------------
 
-All this does is parse [pedigree files](http://zzz.bwh.harvard.edu/plink/data.shtml#ped)
-and group individuals within families. Only performs minimal validation.
+All this does is parse pedigree_ files and group individuals within families.
+Only performs minimal validation.
 
 Install
 -------
@@ -35,3 +35,4 @@ Usage
 
 .. |Travis| image:: https://travis-ci.org/jeremymcrae/peds.svg?branch=master
     :target: https://travis-ci.org/jeremymcrae/peds
+.. _pedigree: http://zzz.bwh.harvard.edu/plink/data.shtml#ped
