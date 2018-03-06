@@ -180,3 +180,33 @@ class TestOpenPed(unittest.TestCase):
         for a, b in zip(sorted(families), sorted(expected)):
             self.assertEqual(a.nodes, b.nodes)
             self.assertEqual(a.edges, b.edges)
+    
+    def test_open_ped_partial_parents(self):
+        """ test that open_ped identifies sibs, even when parents aren't present
+        """
+        
+        # define a ped file where the parents are referred to only within the
+        # child lines. We have to spot siblings from these.
+        self.temp.write('A B C D 1 1\n')
+        self.temp.write('A E C D 1 1\n')
+        self.temp.flush()
+        
+        families = open_ped(self.temp.name)
+        
+        child1 = Person('A', 'B', 'C', 'D', '1', '1')
+        child2 = Person('A', 'E', 'C', 'D', '1', '1')
+        dad = Person('A', 'C', 'NA', 'NA', 'NA', 'NA')
+        mom = Person('A', 'D', 'NA', 'NA', 'NA', 'NA')
+        fam = Family('A')
+        fam.add_person(child1)
+        fam.add_person(child2)
+        fam.add_person(mom)
+        fam.add_person(dad)
+        
+        fam.set_mom(mom, child1)
+        fam.set_mom(mom, child2)
+        fam.set_dad(dad, child1)
+        fam.set_dad(dad, child2)
+        
+        self.assertEqual(families[0].nodes, fam.nodes)
+        self.assertEqual(families[0].edges, fam.edges)
