@@ -45,7 +45,20 @@ def get_probands(family):
         # arbitrarily define probands as individuals who are affected, and do
         # not have any children in the family. This could be a bit looser,
         # to cope with multigenerational familes, but will do for now.
-        if x.is_affected() and len(list(family.get_children(x))) == 0:
-            probands.append(x)
+        if x.is_affected():
+            if len(list(family.get_children(x))) == 0:
+                probands.append(x)
+            else:
+                mom = family.get_mother(x)
+                dad = family.get_father(x)
+                
+                if mom is None or dad is None:
+                    continue
+                
+                # ignore people whose parents are based on their own ped line
+                if mom._is_inferred() or dad._is_inferred():
+                    continue
+                
+                probands.append(x)
     
     return probands
