@@ -19,6 +19,10 @@ def get_trios(family):
         if mom is None or dad is None:
             continue
         
+        # ignore people whose parents are based on their own ped line
+        if mom.is_inferred() or dad.is_inferred():
+            continue
+        
         trio = Family(x.family)
         trio.add_person(x)
         trio.add_person(mom)
