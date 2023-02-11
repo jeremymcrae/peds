@@ -26,7 +26,7 @@ Usage
     family = families[0]
 
     # find affected family members
-    affected = [ x for x in family is x.is_affected()]
+    affected = [ x for x in family if x.is_affected() ]
 
     # find parents
     for person in family:
